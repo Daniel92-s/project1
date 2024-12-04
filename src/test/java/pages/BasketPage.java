@@ -16,9 +16,32 @@ public class BasketPage extends BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
+    public void goToWebsite() {
+        driver.get("https://www.agropataki.ro/ro/"); // Replace with actual URL
+    }
+
+    public void acceptCookies() {
+        WebElement acceptButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#cookiesplus-form > div.cookiesplus-actions.col-12.col-xs-12 > div.first-layer > div:nth-child(1) > div:nth-child(1) > button > span")));
+        acceptButton.click();
+    }
+
+    public void navigateToCategories() {
+        WebElement categoriesMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#header > div.ets_mm_megamenu.layout_layout2.show_icon_in_mobile.transition_fadeInUp.transition_floating.agro_mega_menu.sticky_enabled.ets-dir-ltr.hook-default.single_layout.disable_sticky_mobile > div > div > div > ul > li.mm_menus_li.mm_menus_li_tab.agro_products_menu.mm_sub_align_left.mm_has_sub.menu_ver_alway_show_sub > a")));
+        categoriesMenu.click();
+    }
+
     public void selectProduct(String category) {
-        WebElement categoryElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(category)));
+        WebElement categoryElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#subcategories > ul > li:nth-child(4) > h5 > a")));
         categoryElement.click();
+    }
+    public void selectProduct2() {
+        WebElement productItem = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#subcategories > ul > li:nth-child(5) > h5 > a"))); // Update selector
+        productItem.click();
+    }
+
+    public void addItemToBasket() {
+        WebElement addToBasketButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("SELECTOR_FOR_ADD_TO_BASKET")));
+        addToBasketButton.click();
     }
 
     public boolean isItemAddedMessageDisplayed() {
