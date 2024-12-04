@@ -2,29 +2,35 @@ package tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import pages.LoginPage;
+import pages.LogoutPage;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class LoginTest extends BaseTest {
+class LogoutTest extends BaseTest {
     private LoginPage loginPage;
+    private LogoutPage logoutPage;
 
     @BeforeEach
     void setup() {
         super.setup(); // Call the setup method from BaseTest
-        loginPage = new LoginPage(driver); // Explicitly pass driver
+        loginPage = new LoginPage(driver);
+        logoutPage = new LogoutPage(driver);
     }
 
     @ParameterizedTest
     @MethodSource("data.LoginDataProvider#validLoginData")
-    void testValidLogin(String loginEmail, String loginPassword) {
+    void testLogout(String loginEmail, String loginPassword) {
         loginPage.goTo();
         loginPage.acceptCookies();
         loginPage.navigateToLoginPage();
         loginPage.fillLoginForm(loginEmail, loginPassword);
         loginPage.clickLoginButton();
 
-        assertTrue(loginPage.isUserLoggedIn(), "User should be logged in successfully.");
+        logoutPage.clickProfileButton();
+        logoutPage.clickLogoutButton();
+
+        assertTrue(logoutPage.isLoggedOut(), "User should be logged out successfully.");
     }
 }

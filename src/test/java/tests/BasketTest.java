@@ -1,50 +1,35 @@
 package tests;
 
-import pages.BasketPage;
-import utils.webUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import pages.BasketPage;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class BasketTest {
-    private WebDriver driver;
+class BasketTest extends BaseTest {
     private BasketPage basketPage;
 
     @BeforeEach
     void setup() {
-        driver = webUtils.getWebDriver();
+        super.setup(); // Call the setup method from BaseTest
         basketPage = new BasketPage(driver);
     }
 
     @Test
     void testAddItemToBasket() {
-        // Step 1: Navigate to the website and accept cookies
         basketPage.goToWebsite();
         basketPage.acceptCookies();
-
-        // Step 2: Navigate to product categories
         basketPage.navigateToCategories();
-
-        // Step 3: Select a product
-        basketPage.selectProduct();
-
-        // Step 4: Select a product
-        basketPage.selectProduct2();
-
-        // Step 5: Add product to the basket
+        basketPage.selectProduct("category1"); // Improved with parameters
+        basketPage.selectProduct("category2"); // Improved with parameters
         basketPage.addItemToBasket();
 
-        // Step 6: Verify the confirmation message
         assertTrue(basketPage.isItemAddedMessageDisplayed(), "The confirmation message should be displayed.");
     }
 
     @AfterEach
     void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        super.tearDown(); // Call tearDown from BaseTest
     }
 }
