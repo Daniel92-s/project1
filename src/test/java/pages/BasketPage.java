@@ -25,22 +25,19 @@ public class BasketPage extends BasePage {
         acceptButton.click();
     }
 
+
     public void navigateToCategories() {
         WebElement categoriesMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#header > div.ets_mm_megamenu.layout_layout2.show_icon_in_mobile.transition_fadeInUp.transition_floating.agro_mega_menu.sticky_enabled.ets-dir-ltr.hook-default.single_layout.disable_sticky_mobile > div > div > div > ul > li.mm_menus_li.mm_menus_li_tab.agro_products_menu.mm_sub_align_left.mm_has_sub.menu_ver_alway_show_sub > a")));
         categoriesMenu.click();
     }
 
-    public void selectProduct(String category) {
+    public void selectProduct() {
         WebElement categoryElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#subcategories > ul > li:nth-child(4) > h5 > a")));
         categoryElement.click();
     }
-    public void selectProduct2() {
-        WebElement productItem = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#subcategories > ul > li:nth-child(5) > h5 > a"))); // Update selector
-        productItem.click();
-    }
 
     public void addItemToBasket() {
-        WebElement addToBasketButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("SELECTOR_FOR_ADD_TO_BASKET")));
+        WebElement addToBasketButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#js-product-list > div.products.product-thumbs.row > article:nth-child(1) > div > div.ttproduct-desc > div > div > div.an_productattributes > form > div.an_productattributes-qty-add.clearfix > div > button")));
         addToBasketButton.click();
     }
 

@@ -26,5 +26,6 @@ class LoginTest extends BaseTest {
         loginPage.clickLoginButton();
 
         assertTrue(loginPage.isUserLoggedIn(), "User should be logged in successfully.");
+        System.out.println("User is logged in Succesfuly");
     }
 }

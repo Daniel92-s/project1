@@ -32,5 +32,6 @@ class LogoutTest extends BaseTest {
         logoutPage.clickLogoutButton();
 
         assertTrue(logoutPage.isLoggedOut(), "User should be logged out successfully.");
+        System.out.println("User was logged out successfully");
     }
 }

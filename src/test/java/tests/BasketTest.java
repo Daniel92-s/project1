@@ -21,11 +21,11 @@ class BasketTest extends BaseTest {
         basketPage.goToWebsite();
         basketPage.acceptCookies();
         basketPage.navigateToCategories();
-        basketPage.selectProduct("#subcategories > ul > li:nth-child(4) > h5 > a"); // Improved with parameters
-        basketPage.selectProduct2(); // Improved with parameters
+        basketPage.selectProduct(); // Improved with parameters
         basketPage.addItemToBasket();
 
-        assertTrue(basketPage.isItemAddedMessageDisplayed(), "The confirmation message should be displayed.");
+        assertTrue(basketPage.isItemAddedMessageDisplayed(), "Produs adăugat cu succes în coșul de cumpărături");
+        System.out.println("Item added to the Basket");
     }
 
     @AfterEach
