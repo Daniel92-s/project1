@@ -37,4 +37,16 @@ public class LoginPage extends BasePage {
     public boolean isUserLoggedIn() {
         return driver.findElement(By.cssSelector("#_user_info")).isDisplayed();
     }
+
+    public void accountInformation(){
+        WebElement accountInformation = driver.findElement(By.cssSelector("#identity-link > span"));
+        accountInformation.click();
+
+
+    }
+
+    public void enterDetails(){
+        WebElement enterDetails = driver.findElement(By.cssSelector("#customer-form > section > div:nth-child(2) > div.col-md-6 > input"));
+        enterDetails.click();
+    }
 }

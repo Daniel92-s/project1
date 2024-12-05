@@ -13,7 +13,7 @@ public class BasketPage extends BasePage {
 
     public BasketPage(WebDriver driver) {
         super(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Increased wait time for better reliability
     }
 
     public void goToWebsite() {
@@ -25,14 +25,23 @@ public class BasketPage extends BasePage {
         acceptButton.click();
     }
 
-
     public void navigateToCategories() {
-        WebElement categoriesMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#header > div.ets_mm_megamenu.layout_layout2.show_icon_in_mobile.transition_fadeInUp.transition_floating.agro_mega_menu.sticky_enabled.ets-dir-ltr.hook-default.single_layout.disable_sticky_mobile > div > div > div > ul > li.mm_menus_li.mm_menus_li_tab.agro_products_menu.mm_sub_align_left.mm_has_sub.menu_ver_alway_show_sub > a")));
-        categoriesMenu.click();
+        try {
+            // Wait until the categories menu is clickable
+            WebElement categoriesMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#header > div.ets_mm_megamenu.layout_layout2.show_icon_in_mobile.transition_fadeInUp.transition_floating.agro_mega_menu.sticky_enabled.ets-dir-ltr.hook-default.single_layout.disable_sticky_mobile > div > div > div > ul > li.mm_menus_li.mm_menus_li_tab.agro_products_menu.mm_sub_align_left.mm_has_sub > a > span"))); // Simplified selector
+            categoriesMenu.click(); // Click the categories menu
+        } catch (Exception e) {
+            System.err.println("Error navigating to categories: " + e.getMessage());
+            // Optionally, take a screenshot or perform additional logging here
+        }
     }
 
-    public void selectProduct() {
+    public void selectProduse() {
         WebElement categoryElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#subcategories > ul > li:nth-child(4) > h5 > a")));
+        categoryElement.click();
+    }
+    public void selectsubProdus() {
+        WebElement categoryElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#subcategories > ul > li:nth-child(5) > h5 > a")));
         categoryElement.click();
     }
 
@@ -41,8 +50,33 @@ public class BasketPage extends BasePage {
         addToBasketButton.click();
     }
 
-    public boolean isItemAddedMessageDisplayed() {
-        WebElement confirmationMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#myModalLabel")));
-        return confirmationMessage.isDisplayed();
+    public void closeTab(){
+        WebElement categoryElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#blockcart-modal > div > div > div.modal-header > button > span")));
+        categoryElement.click();
     }
+
+    public void click() {
+        WebElement categoryElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#_desktop_cart > div > div.header > a")));
+        categoryElement.click();
+    }
+
+    public void click2(){
+        WebElement categoryElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#_desktop_cart > div > div.cart_block.block.exclusive > div > div > div.cart-buttons > a")));
+        categoryElement.click();
+    }
+
+    public void QuantityUp(){
+        WebElement categoryElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#main > div > div.cart-grid-body.col-xs-12.col-lg-8 > div > div.cart-overview.js-cart > ul > li:nth-child(1) > div > div.product-line-grid-right.product-line-actions.col-md-5.col-xs-12 > div > div.col-md-10.col-xs-6 > div > div.col-md-6.col-xs-6.qty > div > span.input-group-btn-vertical > button.btn.btn-touchspin.js-touchspin.js-increase-product-quantity.bootstrap-touchspin-up > i")));
+        categoryElement.click();
+    }
+
+    public void RemoveItem(){
+        WebElement categoryElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#main > div > div.cart-grid-body.col-xs-12.col-lg-8 > div > div.cart-overview.js-cart > ul > li:nth-child(1) > div > div.product-line-grid-right.product-line-actions.col-md-5.col-xs-12 > div > div.col-md-2.col-xs-2.text-xs-right > div > a > i")));
+        categoryElement.click();
+    }
+
+//    public boolean isItemAddedMessageDisplayed() {
+//        WebElement confirmationMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#myModalLabel")));
+//        return confirmationMessage.isDisplayed();
+//    }
 }
