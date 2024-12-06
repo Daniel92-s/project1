@@ -9,7 +9,7 @@ import pages.LogoutPage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class BasketTest extends BaseTest {
+class E2E_BasketTest extends BaseTest {
     private BasketPage basketPage;
     private LoginPage loginPage;
     private LogoutPage logoutPage;
