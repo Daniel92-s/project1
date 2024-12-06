@@ -1,7 +1,6 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
-import utils.webUtils;
 
 public class BasePage {
     protected WebDriver driver;
@@ -10,9 +9,6 @@ public class BasePage {
         this.driver = driver; // Assign the WebDriver to the class variable
     }
 
-    public BasePage() {
-
-    }
 
     public void quitDriver() {
         if (driver != null) {

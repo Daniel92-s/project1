@@ -7,7 +7,6 @@ import pages.BasketPage;
 import pages.LoginPage;
 import pages.LogoutPage;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class E2E_BasketTest extends BaseTest {
     private BasketPage basketPage;
@@ -26,10 +25,6 @@ class E2E_BasketTest extends BaseTest {
     void testAddItemToBasket() {
         basketPage.goToWebsite();
         basketPage.acceptCookies();
-
-        // Perform login actions
-//        loginPage.goTo(); // Go to the login page
-//        loginPage.acceptCookies(); // Accept cookies on the login page
         loginPage.navigateToLoginPage(); // Navigate to the login form
         loginPage.fillLoginForm("$@a.com", "$$$$$$$$"); // Replace with actual credentials
         loginPage.clickLoginButton(); // Click the login button

@@ -46,7 +46,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import pages.LoginPage;
 import pages.AccInfoPage;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class E2E_UserInformationTest extends BaseTest {
     private LoginPage loginPage;
@@ -72,7 +71,5 @@ public class E2E_UserInformationTest extends BaseTest {
         accInfoPage.updateName("Dumitru"); // Update the name
         accInfoPage.clickSaveButton(); // Save the changes (if necessary)
 
-        // Optionally, add an assertion to verify the update was successful
-        // For example: assertTrue(..., "User details successfully edited");
-    }
+     }
 }

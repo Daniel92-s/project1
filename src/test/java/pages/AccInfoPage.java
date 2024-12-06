@@ -1,55 +1,32 @@
-//package pages;
-//
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.WebElement;
-//
-//public class AccountPage {
-//    private WebDriver driver;
-//
-    // Selectors
-//    private final By editButtonSelector = By.cssSelector("#wrapper > div.account-h.container-h.container-bg > div > div.side-menu.col-lg-3.col-md-3.col-sm-12.col-xs-12 > div.row > ul:nth-child(4) > li:nth-child(2) > a");
-//    private final By nameFieldSelector = By.cssSelector("#wrapper > div.account-h.container-h.container-bg > div > div.account-section.clearfix.col-sm-12.col-xs-12.col-lg-9.col-md-9 > form > div:nth-child(2) > input");
-//    private final By saveButtonSelector = By.cssSelector("#Save");
-//
-    // Constructor
-//    public AccountPage(WebDriver driver) {
-//        this.driver = driver;
-//    }
-//
-    // Actions
-//
-//    public void updateName(String newName) {
-//        WebElement nameField = driver.findElement(nameFieldSelector);
-//        nameField.clear();
-//        nameField.sendKeys(newName);
-//    }
-//
-//
-//    public void clickSaveButton() {
-//        driver.findElement(saveButtonSelector).click();
-//}
-//}
-
 package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class AccInfoPage {
     private WebDriver driver;
+    private WebDriverWait wait;
 
     // Selectors
     private final By nameFieldSelector = By.cssSelector("#customer-form > section > div:nth-child(2) > div.col-md-6 > input");
     private final By saveButtonSelector = By.cssSelector("#customer-form > footer > button"); // Uncommented for future use
+    private final By currentPasswordFieldSelector = By.cssSelector("#customer-form > section > div:nth-child(5) > div.col-md-6 > div > input"); // Adjust selector as needed
+    private final By newPasswordFieldSelector = By.cssSelector("#customer-form > section > div:nth-child(6) > div.col-md-6 > div > input"); // Adjust selector as needed
+    private final By acceptTermsSelector = By.cssSelector("#customer-form > section > div:nth-child(7) > div.col-md-6 > span"); // Adjust selector as needed
+    private final By savePasswordButtonSelector = By.cssSelector("#customer-form > footer > button"); // Adjust selector as needed
 
     // Constructor
     public AccInfoPage(WebDriver driver) {
         this.driver = driver; // Initialize the driver
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Initialize wait
     }
 
-    // Actions
+    // Existing Actions
     public void updateName(String newName) {
         WebElement nameField = driver.findElement(nameFieldSelector);
         nameField.clear();
@@ -58,5 +35,38 @@ public class AccInfoPage {
 
     public void clickSaveButton() {
         driver.findElement(saveButtonSelector).click(); // Click save button
+    }
+
+    // New Actions for Password Change
+    public void clickCurrentPasswordField() {
+        WebElement currentPasswordField = wait.until(ExpectedConditions.elementToBeClickable(currentPasswordFieldSelector));
+        currentPasswordField.click(); // Click on the current password field
+    }
+
+    public void inputCurrentPassword(String currentPassword) {
+        WebElement currentPasswordField = wait.until(ExpectedConditions.visibilityOfElementLocated(currentPasswordFieldSelector));
+        currentPasswordField.clear(); // Clear existing text
+        currentPasswordField.sendKeys(currentPassword); // Input current password
+    }
+
+    public void clickNewPasswordField() {
+        WebElement newPasswordField = wait.until(ExpectedConditions.elementToBeClickable(newPasswordFieldSelector));
+        newPasswordField.click(); // Click on the new password field
+    }
+
+    public void inputNewPassword(String newPassword) {
+        WebElement newPasswordField = wait.until(ExpectedConditions.visibilityOfElementLocated(newPasswordFieldSelector));
+        newPasswordField.clear(); // Clear existing text
+        newPasswordField.sendKeys(newPassword); // Input new password
+    }
+
+    public void clickAcceptTerms() {
+        WebElement acceptTerms = wait.until(ExpectedConditions.elementToBeClickable(acceptTermsSelector));
+        acceptTerms.click(); // Click on accept terms button
+    }
+
+    public void saveInfo() {
+        WebElement savePasswordButton = wait.until(ExpectedConditions.elementToBeClickable(savePasswordButtonSelector));
+        savePasswordButton.click(); // Click on save button for password change
     }
 }

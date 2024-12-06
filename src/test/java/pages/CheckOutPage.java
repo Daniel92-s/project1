@@ -23,6 +23,7 @@ public class CheckOutPage extends BasePage {
     private final By phoneFieldSelector = By.cssSelector("#shipping-new > div:nth-child(13) > div > input"); // Adjust the selector as needed
     private final By orderButtonSelector = By.cssSelector("#main > div > div.cart-grid-right.col-xs-12.col-lg-4 > div > div.checkout.cart-detailed-actions.card-block > div > a"); // Adjust the selector as needed
     private final By OrderSelector = By.cssSelector("#supercheckout_confirm_order");
+
     public CheckOutPage(WebDriver driver) {
         super(driver);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Increased wait time for better reliability
@@ -65,6 +66,7 @@ public class CheckOutPage extends BasePage {
         WebElement postalCodeField = wait.until(ExpectedConditions.visibilityOfElementLocated(postalCodeFieldSelector));
         postalCodeField.clear();
         postalCodeField.sendKeys(postalCode);
+
 
         // Wait until the overlay is not visible
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("pay-loader")));

@@ -75,8 +75,5 @@ public class BasketPage extends BasePage {
         categoryElement.click();
     }
 
-//    public boolean isItemAddedMessageDisplayed() {
-//        WebElement confirmationMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#myModalLabel")));
-//        return confirmationMessage.isDisplayed();
-//    }
+
 }
