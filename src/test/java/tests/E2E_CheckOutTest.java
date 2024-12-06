@@ -32,12 +32,15 @@ public class E2E_CheckOutTest extends BaseTest {
         checkOutPage.goToBasket(); // Go to basket
         checkOutPage.clickOrderButton(); // Click on order button
         // Fill in checkout details
-        System.out.println("so ales");
-        checkOutPage.fillCheckoutDetails("John", "Doe", "123 Street Name", "445100", "0749999999");
+        System.out.println("Go to checkout form");
+        checkOutPage.fillCheckoutDetails("John", "Doe", "123 Street Name", "60121", "0749999999" );
 
-        System.out.println("nume si tot so scris da nu si tara");
+        System.out.println("All details added");
 
-//        checkOutPage.clickOrderButton(); // Click on order button
+        checkOutPage.clickOrder();
+        System.out.println("Order button was pressed");
+
+
     }
 
     @AfterEach
